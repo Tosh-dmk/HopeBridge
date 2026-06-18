@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# community-resillience-net-2
-=======
 # HopeBridge — Recover After Disaster, Together
 
 HopeBridge is a modern, high-quality community resilience and disaster recovery web application. Its goal is to streamline recovery efforts after natural disasters (such as floods, storms, wildfires, earthquakes, droughts, and landslides) by connecting survivors with vetted aid, financial grants, interactive maps of shelter/supply locations, community support groups, and a step-by-step recovery resource hub.
@@ -65,4 +62,3 @@ The application relies on several core Supabase tables:
 *   `support_groups`: Forums for community connection.
 *   `relief_updates`: Live emergency alerts and notices.
 *   `profiles`: User profile data linked to authentication.
->>>>>>> 6979a8e (Initial commit)
