@@ -6,17 +6,26 @@ interface InteractiveMapProps {
   selectedId?: string;
   onSelectId?: (id: string) => void;
   className?: string;
+  showHazards?: boolean;
 }
+
+const MOCK_HAZARDS = [
+  { id: "h1", name: "Active Flooding - Nyando River Basin", lat: -0.174, lng: 34.92, description: "River Nyando burst its banks. Flooding in low-lying villages." },
+  { id: "h2", name: "Flash Flooding - Nairobi Mathare", lat: -1.2655, lng: 36.8574, description: "Severe urban floods. Heavy drainage overflow reported." },
+  { id: "h3", name: "Landslide Risk - West Pokot", lat: 1.239, lng: 35.122, description: "Mudslides reported along Kapenguria-Lodwar Highway." },
+];
 
 export function InteractiveMap({
   centers,
   selectedId,
   onSelectId,
   className = "",
+  showHazards = false,
 }: InteractiveMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<any>(null);
   const markersRef = useRef<{ [id: string]: any }>({});
+  const hazardMarkersRef = useRef<any[]>([]);
 
   useEffect(() => {
     // Only run on client-side
@@ -59,6 +68,40 @@ export function InteractiveMap({
       // Clear existing markers
       Object.values(markersRef.current).forEach((m) => m.remove());
       markersRef.current = {};
+
+      // Clear existing hazard markers
+      hazardMarkersRef.current.forEach((m) => m.remove());
+      hazardMarkersRef.current = [];
+
+      // Add hazard markers if enabled
+      if (showHazards) {
+        MOCK_HAZARDS.forEach((h) => {
+          const icon = leafletLib.divIcon({
+            className: "custom-hazard-icon",
+            html: `
+              <style>
+                @keyframes hazard-pulse-${h.id} {
+                  0% { transform: scale(0.25); opacity: 0.85; }
+                  100% { transform: scale(2.2); opacity: 0; }
+                }
+              </style>
+              <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
+                <div style="position: absolute; width: 40px; height: 40px; background: rgba(239, 68, 68, 0.4); border-radius: 50%; animation: hazard-pulse-${h.id} 1.8s infinite ease-out;"></div>
+                <div style="position: absolute; width: 14px; height: 14px; background: rgb(239, 68, 68); border-radius: 50%; border: 2px solid white; box-shadow: 0 0 8px rgba(0,0,0,0.4);"></div>
+              </div>
+            `,
+            iconSize: [40, 40],
+            iconAnchor: [20, 20],
+          });
+
+          const marker = leafletLib
+            .marker([h.lat, h.lng], { icon })
+            .addTo(mapInst)
+            .bindPopup(`<strong>${h.name}</strong><br/>${h.description}`);
+
+          hazardMarkersRef.current.push(marker);
+        });
+      }
 
       const bounds: any[] = [];
 
@@ -126,7 +169,7 @@ export function InteractiveMap({
         leafletMapRef.current = null;
       }
     };
-  }, [centers]);
+  }, [centers, showHazards]);
 
   // Handle selectedId changes dynamically without recreating the map instance
   useEffect(() => {

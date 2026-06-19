@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2, ShieldCheck } from "lucide-react";
@@ -106,6 +106,59 @@ function ReportPage() {
   const [severity, setSeverity] = useState([3]);
   const [needs, setNeeds] = useState<string[]>([]);
 
+  useEffect(() => {
+    const handleDemoAutofill = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const scenario = customEvent.detail.scenario;
+      if (scenario === "nyando") {
+        setDisasterType("flood");
+        setCounty("Kisumu");
+        setSpecificLocation("Nyando Basin");
+        setSeverity([4]);
+        setNeeds(["Temporary housing", "Food & clean water", "Medical aid"]);
+        
+        // Typing effect for description
+        const descText = "Heavy seasonal rains have caused the Nyando River to burst its banks. Over 200 homesteads are completely submerged, crops destroyed, and families have evacuated to Ahero Multipurpose Center. We need immediate tents, blankets, water treatment kits, and hot meals.";
+        let currentText = "";
+        let index = 0;
+        const interval = setInterval(() => {
+          if (index < descText.length) {
+            currentText += descText.substring(0, index + 2);
+            setDescription(currentText);
+            index += 2;
+          } else {
+            setDescription(descText);
+            clearInterval(interval);
+          }
+        }, 10);
+      } else if (scenario === "turkana") {
+        setDisasterType("drought");
+        setCounty("Turkana");
+        setSpecificLocation("Lodwar Outskirts");
+        setSeverity([5]);
+        setNeeds(["M-Pesa cash assistance", "Food & clean water", "Counseling & mental health"]);
+
+        // Typing effect
+        const descText = "Severe water scarcity and dry spells have completely depleted animal pastures. Over 80% of our cattle have died. Families are struggling to survive on one meal per day. We require immediate food supplies, water trucking, and direct M-Pesa cash grants.";
+        let currentText = "";
+        let index = 0;
+        const interval = setInterval(() => {
+          if (index < descText.length) {
+            currentText += descText.substring(0, index + 2);
+            setDescription(currentText);
+            index += 2;
+          } else {
+            setDescription(descText);
+            clearInterval(interval);
+          }
+        }, 10);
+      }
+    };
+
+    window.addEventListener("demo:autofill", handleDemoAutofill);
+    return () => window.removeEventListener("demo:autofill", handleDemoAutofill);
+  }, []);
+
   const mutation = useMutation({
     mutationFn: async () => {
       const fullLoc = county ? `${county} County${specificLocation ? `, ${specificLocation}` : ""}` : specificLocation;
@@ -127,6 +180,19 @@ function ReportPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["disaster_reports"] });
       toast.success("Report submitted. We're matching you with support.");
+
+      // Hackathon SMS simulator trigger
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent("demo:sms", {
+            detail: {
+              title: "HopeBridge Support Team",
+              body: `We have received your report for ${county} County. Emergency resources are coordinating. View matched aid programs on your dashboard.`,
+            },
+          })
+        );
+      }, 1500);
+
       navigate({ to: "/dashboard" });
     },
     onError: (err) => {

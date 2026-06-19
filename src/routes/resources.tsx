@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   BookOpen,
@@ -104,9 +104,11 @@ function Resources() {
             </h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {guides.map((g) => (
-                <article
+                <Link
+                  to="/resources/guides/$guideId"
+                  params={{ guideId: g.tag.toLowerCase() }}
                   key={g.title}
-                  className="rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-soft"
+                  className="rounded-2xl border border-border bg-card p-6 transition-all hover:shadow-soft block text-left"
                 >
                   <div className="mb-4 flex size-11 items-center justify-center rounded-2xl bg-brand-100 text-brand-800">
                     <g.icon className="size-5" aria-hidden="true" />
@@ -118,7 +120,7 @@ function Resources() {
                     {g.title}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{g.body}</p>
-                </article>
+                </Link>
               ))}
             </div>
           </div>

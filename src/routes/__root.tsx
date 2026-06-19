@@ -8,12 +8,16 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { X } from "lucide-react";
+import { UssdSimulator } from "../components/UssdSimulator";
 
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "../hooks/use-theme";
 import { AuthProvider } from "../hooks/use-auth";
 import { Toaster } from "../components/ui/sonner";
+import { DemoPanel } from "../components/DemoPanel";
+import { NotificationToast } from "../components/NotificationToast";
 
 function NotFoundComponent() {
   return (
@@ -135,6 +139,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const routerState = useRouterState();
   const isNavigating = routerState.status === "pending";
+  const [isUssdOpen, setIsUssdOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenUssd = () => setIsUssdOpen(true);
+    window.addEventListener("demo:open-ussd", handleOpenUssd);
+    return () => window.removeEventListener("demo:open-ussd", handleOpenUssd);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -153,6 +164,23 @@ function RootComponent() {
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <Toaster position="top-center" />
+          <NotificationToast />
+          <DemoPanel />
+
+          {/* Centered global USSD Phone simulator with blurred background */}
+          {isUssdOpen && (
+            <div 
+              onClick={() => setIsUssdOpen(false)}
+              className="fixed inset-0 z-[99999] bg-black/60 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
+            >
+              <div 
+                onClick={(e) => e.stopPropagation()} 
+                className="relative animate-in zoom-in-95 duration-200 cursor-default"
+              >
+                <UssdSimulator onClose={() => setIsUssdOpen(false)} />
+              </div>
+            </div>
+          )}
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

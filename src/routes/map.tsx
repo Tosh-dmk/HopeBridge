@@ -33,19 +33,35 @@ export const Route = createFileRoute("/map")({
 function MapPage() {
   const { data: centers } = useSuspenseQuery(assistanceCentersQuery());
   const [selectedId, setSelectedId] = useState(centers[0]?.id);
+  const [showHazards, setShowHazards] = useState(false);
   const selected = centers.find((c) => c.id === selectedId) ?? centers[0];
 
   return (
     <PageShell>
       <div className="mx-auto max-w-7xl px-4 py-12">
-        <header className="max-w-2xl">
-          <h1 className="font-serif text-4xl font-semibold text-foreground">
-            Assistance near you
-          </h1>
-          <p className="mt-3 text-muted-foreground">
-            Shelters, supply points, and recovery hubs — with the services they offer right
-            now.
-          </p>
+        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="max-w-2xl">
+            <h1 className="font-serif text-4xl font-semibold text-foreground">
+              Assistance near you
+            </h1>
+            <p className="mt-3 text-muted-foreground">
+              Shelters, supply points, and recovery hubs — with the services they offer right
+              now.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 self-start sm:self-center bg-card border border-border rounded-full px-4 py-2 shadow-sm shrink-0">
+            <span className="text-xs font-bold text-red-500 animate-pulse">●</span>
+            <label htmlFor="hazards-toggle" className="text-xs font-semibold text-muted-foreground uppercase cursor-pointer select-none">
+              Show Hazard Alerts
+            </label>
+            <input
+              id="hazards-toggle"
+              type="checkbox"
+              checked={showHazards}
+              onChange={(e) => setShowHazards(e.target.checked)}
+              className="size-4 text-brand-500 rounded border-border focus:ring-brand-500 cursor-pointer"
+            />
+          </div>
         </header>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-5">
@@ -100,6 +116,7 @@ function MapPage() {
                 centers={centers}
                 selectedId={selectedId}
                 onSelectId={setSelectedId}
+                showHazards={showHazards}
                 className="h-[300px] w-full rounded-3xl md:h-[440px]"
               />
               {selected && (

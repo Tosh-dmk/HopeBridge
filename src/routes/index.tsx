@@ -89,8 +89,8 @@ function Index() {
     <PageShell>
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-16">
         {/* Hero */}
-        <section className="mb-16 animate-fade-up">
-          <div className="max-w-3xl">
+        <section className="mb-16 animate-fade-up max-w-4xl">
+          <div>
             <h1 className="font-serif text-4xl font-semibold leading-[1.1] text-foreground md:text-6xl">
               You aren't rebuilding <span className="italic text-accent">alone.</span>
             </h1>
