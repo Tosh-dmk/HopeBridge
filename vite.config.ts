@@ -17,8 +17,10 @@ export default defineConfig({
     }),
     nitro({
       preset: "vercel",
-      externals: {
-        inline: ["tslib"],
+      rollupConfig: {
+        external: (id) => {
+          if (id === "tslib") return false;
+        },
       },
     }),
     viteReact(),
