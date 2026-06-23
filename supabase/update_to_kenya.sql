@@ -9,6 +9,7 @@ TRUNCATE TABLE public.aid_organizations CASCADE;
 
 -- 2. Insert Kenyan Aid Organizations
 insert into public.aid_organizations (name, category, description, region, amount_label, deadline, verified, website, tags) values
+<<<<<<< HEAD
 ('Kenya Red Cross Society (KRCS)', 'non_profit', 'Emergency rescue, first aid, temporary tents, water purification, and survival kit distribution across flood and landslide hit counties.', 'National', 'Emergency Aid', 'Ongoing', true, 'https://www.redcross.or.ke/', '{emergency,shelter,first_aid,flood}'),
 ('NDMA Drought Cash Transfers', 'government', 'Cash disbursements via the Hunger Safety Net Programme (HSNP) to registered vulnerable families in Arid and Semi-Arid Land (ASAL) counties.', 'National', 'Up to KES 20,000', 'Rolling', true, 'https://ndma.go.ke/', '{drought,grants,agriculture}'),
 ('Safaricom Foundation Disaster Grant', 'donor', 'Support for local community groups, reconstruction of schools and hospitals, and mobile money aid transfers.', 'National', 'Varies', 'Ongoing', true, 'https://www.safaricomfoundation.org/', '{grants,rebuilding,medical}'),
@@ -17,6 +18,16 @@ insert into public.aid_organizations (name, category, description, region, amoun
 ('Budalangi Flood Rebuild Fund', 'community', 'Crowdfunded local building materials pool (timber, cement, roofing sheets) managed by community elders.', 'Western Region', 'Available now', 'Ongoing', true, 'https://www.busiacounty.go.ke/', '{materials,rebuilding,flood}'),
 ('ActionAid Kenya Livelihood Grants', 'non_profit', 'Direct recovery cash transfers and rebuilding materials focusing on vulnerable women and child-headed households.', 'Coastal Region', 'Up to KES 50,000', 'Ongoing', true, 'https://actionaid-kenya.org/', '{grants,housing,community}'),
 ('Kenya Farmers Mutual Aid Chama', 'community', 'Grassroots mutual support coordinating seed distribution, tractor sharing, and soil recovery volunteers.', 'Rift Valley', 'Volunteer-led', 'Ongoing', true, 'https://www.kenaff.org/', '{community,volunteers,food,drought}');
+=======
+('Kenya Red Cross Society (KRCS)', 'non_profit', 'Emergency rescue, first aid, temporary tents, water purification, and survival kit distribution across flood and landslide hit counties.', 'National', 'Emergency Aid', 'Ongoing', true, 'https://www.redcross.or.ke', '{emergency,shelter,first_aid,flood}'),
+('NDMA Drought Cash Transfers', 'government', 'Cash disbursements via the Hunger Safety Net Programme (HSNP) to registered vulnerable families in Arid and Semi-Arid Land (ASAL) counties.', 'National', 'Up to KES 20,000', 'Rolling', true, 'https://www.ndma.go.ke', '{drought,grants,agriculture}'),
+('Safaricom Foundation Disaster Grant', 'donor', 'Support for local community groups, reconstruction of schools and hospitals, and mobile money aid transfers.', 'National', 'Varies', 'Ongoing', true, 'https://foundation.safaricom.co.ke', '{grants,rebuilding,medical}'),
+('Ministry of Devolution and ASALs Relief', 'government', 'Government food distribution networks, iron sheets for roofing rebuilds, and direct relief supplies.', 'National', 'In-kind support', 'Ongoing', true, 'https://meac.go.ke', '{food,materials,emergency}'),
+('Equity Group Foundation Recovery Loans', 'non_profit', 'Rehabilitation loans and agricultural inputs grants for smallholder farmers and businesses affected by climate shocks.', 'Rift Valley', 'Up to KES 500,000', 'Dec 31', true, 'https://equitygroupholdings.com', '{loans,grants,agriculture}'),
+('Budalangi Flood Rebuild Fund', 'community', 'Crowdfunded local building materials pool (timber, cement, roofing sheets) managed by community elders.', 'Western Region', 'Available now', 'Ongoing', true, 'https://www.busiacounty.go.ke', '{materials,rebuilding,flood}'),
+('ActionAid Kenya Livelihood Grants', 'non_profit', 'Direct recovery cash transfers and rebuilding materials focusing on vulnerable women and child-headed households.', 'Coastal Region', 'Up to KES 50,000', 'Ongoing', true, 'https://actionaid-kenya.org', '{grants,housing,community}'),
+('Kenya Farmers Mutual Aid Chama', 'community', 'Grassroots mutual support coordinating seed distribution, tractor sharing, and soil recovery volunteers.', 'Rift Valley', 'Volunteer-led', 'Ongoing', true, 'https://www.kenaff.org', '{community,volunteers,food,drought}');
+>>>>>>> 00f978814274f8ce9876951e87be1f526dbf8f3e
 
 -- 3. Insert Kenyan Support Groups
 insert into public.support_groups (name, description, topic, region, member_count) values
