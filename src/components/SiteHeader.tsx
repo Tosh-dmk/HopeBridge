@@ -2,24 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
-  { to: "/resources", label: "Resources" },
-  { to: "/organizations", label: "Organizations" },
+  { to: "/funding", label: "Climate Finance" },
+  { to: "/organizations", label: "Aid Directory" },
   { to: "/community", label: "Community" },
-  { to: "/funding", label: "Funding" },
+  { to: "/resources", label: "Resources" },
   { to: "/map", label: "Map" },
-  { to: "/assistant", label: "Assistant" },
+  { to: "/operations", label: "Ops Portal" },
 ] as const;
 
 export function SiteHeader() {

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as OrganizationsRouteImport } from './routes/organizations'
+import { Route as OperationsRouteImport } from './routes/operations'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as FundingRouteImport } from './routes/funding'
 import { Route as CommunityRouteImport } from './routes/community'
@@ -36,6 +37,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const OrganizationsRoute = OrganizationsRouteImport.update({
   id: '/organizations',
   path: '/organizations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OperationsRoute = OperationsRouteImport.update({
+  id: '/operations',
+  path: '/operations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MapRoute = MapRouteImport.update({
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRoute
   '/funding': typeof FundingRoute
   '/map': typeof MapRoute
+  '/operations': typeof OperationsRoute
   '/organizations': typeof OrganizationsRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRoute
   '/funding': typeof FundingRoute
   '/map': typeof MapRoute
+  '/operations': typeof OperationsRoute
   '/organizations': typeof OrganizationsRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRoute
   '/funding': typeof FundingRoute
   '/map': typeof MapRoute
+  '/operations': typeof OperationsRoute
   '/organizations': typeof OrganizationsRoute
   '/resources': typeof ResourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/funding'
     | '/map'
+    | '/operations'
     | '/organizations'
     | '/resources'
     | '/sitemap.xml'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/funding'
     | '/map'
+    | '/operations'
     | '/organizations'
     | '/resources'
     | '/sitemap.xml'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/funding'
     | '/map'
+    | '/operations'
     | '/organizations'
     | '/resources'
     | '/sitemap.xml'
@@ -186,6 +198,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRoute
   FundingRoute: typeof FundingRoute
   MapRoute: typeof MapRoute
+  OperationsRoute: typeof OperationsRoute
   OrganizationsRoute: typeof OrganizationsRoute
   ResourcesRoute: typeof ResourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -213,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/organizations'
       fullPath: '/organizations'
       preLoaderRoute: typeof OrganizationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/operations': {
+      id: '/operations'
+      path: '/operations'
+      fullPath: '/operations'
+      preLoaderRoute: typeof OperationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/map': {
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRoute,
   FundingRoute: FundingRoute,
   MapRoute: MapRoute,
+  OperationsRoute: OperationsRoute,
   OrganizationsRoute: OrganizationsRoute,
   ResourcesRoute: ResourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -176,35 +176,43 @@ const KENYAN_GROUPS: SupportGroup[] = [
 const KENYAN_UPDATES: ReliefUpdate[] = [
   {
     id: "u1",
-    title: "Severe Flood Warning - Tana River Basin",
-    body: "Water levels in the Tana River have reached critical thresholds. Residents in Garissa and Tana River lowlands are urged to move to higher ground immediately.",
+    title: "Severe Flood Warning — Tana River Basin",
+    body: "Water levels in the Tana River have reached critical thresholds. Residents in Garissa and Tana River lowlands are urged to move to higher ground immediately and register at the nearest KRC shelter.",
     region: "Coastal Region",
     severity: "high",
-    created_at: new Date().toISOString(),
+    created_at: new Date(Date.now() - 1000 * 60 * 43).toISOString(), // 43 min ago
   },
   {
     id: "u2",
-    title: "NDMA Drought Cash Transfers Disbursed",
-    body: "The Hunger Safety Net Programme (HSNP) funds for this quarter have been released to banks and mobile money agents. Check Huduma Centers for updates.",
-    region: "Northern Kenya",
-    severity: "info",
-    created_at: new Date().toISOString(),
+    title: "Landslide Alert — West Pokot & Elgeyo Marakwet",
+    body: "Continuous heavy rainfall has destabilised hillside terrain in West Pokot and Elgeyo Marakwet. County governments have activated emergency response. Avoid travel in affected areas.",
+    region: "Rift Valley",
+    severity: "high",
+    created_at: new Date(Date.now() - 1000 * 60 * 112).toISOString(), // ~2h ago
   },
   {
     id: "u3",
-    title: "Free Building Iron Sheets Distribution",
-    body: "Kenya Red Cross is distributing roofing iron sheets, poles, and treated mosquito nets in Budalangi and Nyando this week.",
-    region: "Western Region",
-    severity: "info",
-    created_at: new Date().toISOString(),
+    title: "Safaricom Foundation MSME Grants — Deadline Extended",
+    body: "Rebuilding grant applications for shops and traders affected by floods or landslides have been extended. Apply via HopeBridge or call 0800-724-000.",
+    region: "National",
+    severity: "medium",
+    created_at: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(), // 6h ago
   },
   {
     id: "u4",
-    title: "Safaricom Foundation MSME Grants Extended",
-    body: "Rebuilding grants applications for local shops and traders affected by landslide or flood debris extended to October 30.",
-    region: "National",
-    severity: "medium",
-    created_at: new Date().toISOString(),
+    title: "NDMA HSNP Cash Transfers Disbursed — Q3 2025",
+    body: "Hunger Safety Net Programme funds for this quarter have been released. Eligible families in Turkana, Marsabit, Mandera, and Wajir can collect via M-Pesa or Huduma Centre agents.",
+    region: "Northern Kenya",
+    severity: "info",
+    created_at: new Date(Date.now() - 1000 * 60 * 60 * 14).toISOString(), // 14h ago
+  },
+  {
+    id: "u5",
+    title: "KRCS Iron Sheet Distribution — Budalangi & Nyando",
+    body: "Kenya Red Cross is distributing roofing iron sheets, timber poles, and treated mosquito nets in Budalangi and Nyando this week. Bring National ID and damage report copy.",
+    region: "Western Region",
+    severity: "info",
+    created_at: new Date(Date.now() - 1000 * 60 * 60 * 22).toISOString(), // 22h ago
   },
 ];
 

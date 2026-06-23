@@ -1,6 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
-import { ArrowLeft, CheckCircle2, AlertTriangle, Phone, FileText, Home, Coins, HeartPulse, BookOpen } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  AlertTriangle,
+  Phone,
+  FileText,
+  Home,
+  Coins,
+  HeartPulse,
+  BookOpen,
+  Waves,
+  Sun,
+  Mountain,
+  Wind,
+  Flame,
+} from "lucide-react";
 
 export const Route = createFileRoute("/resources_/guides/$guideId")({
   component: GuideDetail,
@@ -8,26 +23,209 @@ export const Route = createFileRoute("/resources_/guides/$guideId")({
 
 const guidesData: Record<string, any> = {
   safety: {
-    title: "Flash Flood & Emergency Safety",
+    title: "Immediately After a Disaster",
     icon: AlertTriangle,
     content: (
       <>
+        <p className="text-muted-foreground mb-8 text-lg">
+          The first few hours and days following a climate disaster are critical for saving lives and ensuring long-term recovery. Select your specific disaster situation below to access immediate emergency action steps, safety protocols, and vital local contacts.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose">
+          {[
+            {
+              id: "safety-floods",
+              title: "Floods & Flash Floods",
+              desc: "What to do during and immediately after rising water levels or flash floods.",
+              icon: Waves,
+              color: "text-blue-500 bg-blue-500/10 border-blue-500/20 dark:bg-blue-950/30 dark:border-blue-900/50",
+            },
+            {
+              id: "safety-droughts",
+              title: "Droughts & Dry Spells",
+              desc: "Managing severe water shortages, heat exhaustion, and securing livestock.",
+              icon: Sun,
+              color: "text-amber-500 bg-amber-500/10 border-amber-500/20 dark:bg-amber-950/30 dark:border-amber-900/50",
+            },
+            {
+              id: "safety-landslides",
+              title: "Landslides & Mudslides",
+              desc: "Evacuation alerts, assessing soil movement, and reporting trapped persons.",
+              icon: Mountain,
+              color: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20 dark:bg-emerald-950/30 dark:border-emerald-900/50",
+            },
+            {
+              id: "safety-storms",
+              title: "Storms & Strong Winds",
+              desc: "Immediate steps during lightning storms, strong winds, and power failures.",
+              icon: Wind,
+              color: "text-cyan-500 bg-cyan-500/10 border-cyan-500/20 dark:bg-cyan-950/30 dark:border-cyan-900/50",
+            },
+            {
+              id: "safety-wildfires",
+              title: "Wildfires & Bushfires",
+              desc: "Evacuation routes, dealing with thick smoke, and assessing burning hotspots.",
+              icon: Flame,
+              color: "text-orange-500 bg-orange-500/10 border-orange-500/20 dark:bg-orange-950/30 dark:border-orange-900/50",
+            },
+          ].map((d) => (
+            <Link
+              key={d.id}
+              to="/resources/guides/$guideId"
+              params={{ guideId: d.id }}
+              className="group flex flex-col p-6 rounded-2xl border border-border bg-card hover:bg-card hover:border-brand-500/30 transition-all duration-300 text-left hover:shadow-soft"
+            >
+              <div className={`mb-4 flex size-12 items-center justify-center rounded-2xl border ${d.color}`}>
+                <d.icon className="size-6 transition-transform group-hover:scale-110" />
+              </div>
+              <h3 className="font-serif text-xl font-semibold text-foreground group-hover:text-brand-500 transition-colors">
+                {d.title}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                {d.desc}
+              </p>
+              <span className="mt-4 text-xs font-semibold text-brand-600 dark:text-brand-400 group-hover:underline flex items-center gap-1">
+                View Safety Guide <span className="transition-transform group-hover:translate-x-1">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </>
+    )
+  },
+  "safety-floods": {
+    title: "Floods & Flash Floods Safety",
+    icon: Waves,
+    content: (
+      <>
         <section className="mb-8">
-          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions During Flooding</h2>
-          <p className="text-muted-foreground mb-4">When flash floods hit urban areas like Nairobi or river basins like Nyando and Tana, act quickly:</p>
+          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions After Flooding</h2>
+          <p className="text-muted-foreground mb-4">When floodwaters begin to recede, or immediately after a flash flood, follow these critical safety steps:</p>
           <ul className="space-y-3 mb-6">
-            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span>Move to higher ground immediately. Avoid walking or driving through floodwaters. Just 15cm of fast-moving water can knock you down.</span></li>
-            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span>Turn off main power switches and disconnect electrical appliances if water enters your home.</span></li>
-            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span>Keep important documents (ID, Title Deeds, NHIF cards) in waterproof bags.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Avoid Moving Water:</strong> Do not walk or drive through floodwaters. Just 15cm of fast-moving water can knock you down, and 30cm can float or sweep away most vehicles.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Inspect for Gas/Power Hazards:</strong> Do not turn on electricity or use electrical appliances if your house is wet or standing in water. Check for broken gas lines or electrical cables.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Boil and Treat Water:</strong> Floodwaters contaminate local wells, pipes, and water tables. Boil all water for drinking, cooking, and brushing teeth for at least 1 full minute, or treat it with chlorine tablets (e.g., Aquatabs).</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Document Damage First:</strong> Before you begin cleaning up, take clear, timestamped photos of your property, structure, and ruined belongings for county relief or insurance claims.</span></li>
           </ul>
         </section>
+        
         <section className="mb-8 p-6 bg-red-500/10 border border-red-500/20 rounded-2xl">
           <h2 className="text-xl font-semibold text-red-700 dark:text-red-400 mb-3 flex items-center gap-2"><Phone className="size-5" /> Emergency Contacts</h2>
           <ul className="space-y-2 text-red-900 dark:text-red-200">
-            <li><strong>Kenya Red Cross Society:</strong> Toll-Free 1199</li>
-            <li><strong>St John Ambulance:</strong> 0721 225 285</li>
+            <li><strong>Kenya Red Cross Society (Toll-Free Helpline):</strong> 1199</li>
             <li><strong>National Disaster Operations Centre:</strong> 020 2215105</li>
-            <li><strong>Police Emergency:</strong> 999 / 112</li>
+            <li><strong>St John Ambulance (Emergency Dispatch):</strong> 0721 225 285</li>
+            <li><strong>Police Emergency Line:</strong> 999 / 112</li>
+          </ul>
+        </section>
+      </>
+    )
+  },
+  "safety-droughts": {
+    title: "Drought & Water Scarcity Safety",
+    icon: Sun,
+    content: (
+      <>
+        <section className="mb-8">
+          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions During Severe Droughts</h2>
+          <p className="text-muted-foreground mb-4">When a dry spell turns severe, local communities must coordinate to ensure water safety and health preservation:</p>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Strict Water Allocation:</strong> Reserve clean, fresh water strictly for drinking and hygiene. Implement greywater recycling (use laundry or kitchen water to flush toilets and support kitchen gardens).</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Monitor Vulnerable Persons:</strong> Watch young children, the elderly, and livestock for signs of severe dehydration, heat stroke, or malnutrition. Protect skin from extreme sunlight.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Register for Aid & Food Programs:</strong> Visit the local Chief's office or Huduma Center to verify registration for the Hunger Safety Net Programme (HSNP) cash transfers or NGO food distributions.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Cover Open Water Sources:</strong> Keep all community water pans, boreholes, and tanks covered or shaded to minimize evaporation and prevent contamination from wild animals.</span></li>
+          </ul>
+        </section>
+
+        <section className="mb-8 p-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl">
+          <h2 className="text-xl font-semibold text-amber-700 dark:text-amber-400 mb-3 flex items-center gap-2"><Phone className="size-5" /> Drought & Food Relief Contacts</h2>
+          <ul className="space-y-2 text-amber-900 dark:text-amber-200">
+            <li><strong>National Drought Management Authority (NDMA):</strong> 020 2227496</li>
+            <li><strong>World Food Programme (WFP) Kenya:</strong> 020 7622040</li>
+            <li><strong>Kenya Red Cross Relief Services:</strong> 1199</li>
+            <li><strong>County Water Department Kiosks:</strong> Contact your local sub-county water officer.</li>
+          </ul>
+        </section>
+      </>
+    )
+  },
+  "safety-landslides": {
+    title: "Landslide & Mudslide Safety",
+    icon: Mountain,
+    content: (
+      <>
+        <section className="mb-8">
+          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions During & After Landslides</h2>
+          <p className="text-muted-foreground mb-4">In hilly areas (such as Murang'a, West Pokot, or parts of Rift Valley) heavy rainfall can trigger sudden soil collapse:</p>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Evacuate Immediately:</strong> If you hear rumbling, trees cracking, or see sudden mud/rocks moving, leave the structure immediately. Move out of the direct path of the landslide.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Stay Clear of the Slide Area:</strong> Avoid entering the slide zone. Additional landslides, slope failures, or mudflows can occur hours or days after the initial collapse.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Report Trapped Persons:</strong> Immediately contact the local administration or Kenya Red Cross if neighbors are unaccounted for or suspected to be trapped in mud debris.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Check for Broken Utilities:</strong> Look for and report damaged water pipes, sewage lines, or cracked electrical poles to avoid subsequent hazards.</span></li>
+          </ul>
+        </section>
+
+        <section className="mb-8 p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl">
+          <h2 className="text-xl font-semibold text-emerald-700 dark:text-emerald-400 mb-3 flex items-center gap-2"><Phone className="size-5" /> Mudslide Emergency Contacts</h2>
+          <ul className="space-y-2 text-emerald-900 dark:text-emerald-200">
+            <li><strong>Kenya Red Cross Emergency Response:</strong> 1199</li>
+            <li><strong>National Disaster Management Unit (NDMU):</strong> 020 2210851</li>
+            <li><strong>Police Dispatch (Toll-Free):</strong> 999 / 112</li>
+            <li><strong>Local Administration Hotline:</strong> Contact your Sub-Location Assistant Chief.</li>
+          </ul>
+        </section>
+      </>
+    )
+  },
+  "safety-storms": {
+    title: "Storms & Strong Winds Safety",
+    icon: Wind,
+    content: (
+      <>
+        <section className="mb-8">
+          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions During & After Storms</h2>
+          <p className="text-muted-foreground mb-4">Severe windstorms, cyclones, and lightning strikes require immediate precautionary measures:</p>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Seek Indoor Shelter:</strong> Go indoors immediately. Stay away from windows, glass doors, and outer walls. Avoid sheltering under tall, isolated trees or electrical poles.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Unplug Electronic Devices:</strong> Power surges from lightning strikes can ruin equipment and cause electrical fires. Disconnect major appliances during storms.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Avoid Downed Power Lines:</strong> Never approach or touch fallen utility lines. Assume they are live and dangerous. Report them immediately to Kenya Power (KPLC).</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Clear Structural Hazards:</strong> Secure loose iron sheets or timber in your homestead. Ensure that gutters and drains are clear of debris to prevent overflow.</span></li>
+          </ul>
+        </section>
+
+        <section className="mb-8 p-6 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl">
+          <h2 className="text-xl font-semibold text-cyan-700 dark:text-cyan-400 mb-3 flex items-center gap-2"><Phone className="size-5" /> Storm and Power Contacts</h2>
+          <ul className="space-y-2 text-cyan-900 dark:text-cyan-200">
+            <li><strong>Kenya Power (KPLC) Emergency Line:</strong> 97771 or 0703 070 707</li>
+            <li><strong>St John Ambulance Emergency Hotline:</strong> 0721 225 285</li>
+            <li><strong>Kenya Meteorological Department (KMD):</strong> meteo.go.ke (for active storm warnings)</li>
+          </ul>
+        </section>
+      </>
+    )
+  },
+  "safety-wildfires": {
+    title: "Wildfire & Bushfire Safety",
+    icon: Flame,
+    content: (
+      <>
+        <section className="mb-8">
+          <h2 className="text-2xl font-serif font-semibold mb-3">Immediate Actions During & After Wildfires</h2>
+          <p className="text-muted-foreground mb-4">In dry grasslands or forests (such as Mount Kenya or Mau Forest buffer zones), wildfires can spread rapidly due to dry winds:</p>
+          <ul className="space-y-3 mb-6">
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Evacuate Early:</strong> Evacuate in the direction opposite to the fire's movement. Do not wait for an official order if you see heavy smoke or approaching flames.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Protect Air Quality:</strong> Cover your nose and mouth with a wet, thick cloth or mask to filter smoke and ash particles. Close doors, windows, and fireplace dampers.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Clear Defensible Space:</strong> Clear dry branches, leaves, and firewood at least 10 meters from structures. Wet your roof and walls with water if you have supply.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="size-5 text-emerald-500 mt-0.5 shrink-0" /> <span><strong>Monitor Smoldering Embers:</strong> After the fire passes, check rooftops, wooden fences, and crop borders for hidden ember hotspots that could reignite.</span></li>
+          </ul>
+        </section>
+
+        <section className="mb-8 p-6 bg-orange-500/10 border border-orange-500/20 rounded-2xl">
+          <h2 className="text-xl font-semibold text-orange-700 dark:text-orange-400 mb-3 flex items-center gap-2"><Phone className="size-5" /> Forest & Bushfire Contacts</h2>
+          <ul className="space-y-2 text-orange-900 dark:text-orange-200">
+            <li><strong>Kenya Forest Service (KFS) Fire Hotline:</strong> 020 2385311</li>
+            <li><strong>Kenya Wildlife Service (KWS) (Parks/Buffers):</strong> 0800 597 000 (Toll-free)</li>
+            <li><strong>Kenya Red Cross Society (Evacuations/Medical):</strong> 1199</li>
+            <li><strong>National Disaster Operations Centre:</strong> 020 2215105</li>
           </ul>
         </section>
       </>
@@ -181,16 +379,30 @@ function GuideDetail() {
   };
 
   const Icon = guide.icon;
+  const isSubSafety = guideId.startsWith("safety-");
 
   return (
     <PageShell>
       <div className="mx-auto max-w-4xl px-4 py-12">
         <div className="mb-8">
-          <Link to="/resources" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-6">
-            <ArrowLeft className="size-4 mr-2" /> Back to Resources
-          </Link>
+          {isSubSafety ? (
+            <Link
+              to="/resources/guides/$guideId"
+              params={{ guideId: "safety" }}
+              className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-6"
+            >
+              <ArrowLeft className="size-4 mr-2" /> Back to Safety Guides
+            </Link>
+          ) : (
+            <Link
+              to="/resources"
+              className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground mb-6"
+            >
+              <ArrowLeft className="size-4 mr-2" /> Back to Resources
+            </Link>
+          )}
           <div className="flex items-center gap-4">
-            <div className="size-16 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center">
+            <div className="size-16 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center dark:bg-brand-950 dark:text-brand-300">
               <Icon className="size-8" />
             </div>
             <h1 className="font-serif text-3xl md:text-5xl font-semibold text-foreground capitalize">
