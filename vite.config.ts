@@ -25,9 +25,6 @@ export default defineConfig({
     }),
     viteReact(),
   ],
-  define: {
-    __BUILD_TIMESTAMP__: JSON.stringify(new Date().toISOString()),
-  },
   resolve: {
     tsconfigPaths: true,
   },
