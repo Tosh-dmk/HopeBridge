@@ -8,8 +8,6 @@ The platform is designed around a core thesis: **Climate disasters happen. Recov
 
 To showcase how critical aid reaches offline and disconnected rural communities, HopeBridge includes a fully interactive **USSD Mobile phone simulator** alongside the core web portal.
 
-
-
 ## Key Features
 
 - **Climate Finance & Aid Marketplace** (`src/routes/funding.tsx`):
@@ -72,7 +70,7 @@ If deployed with a live database backend, the schemas map to:
 
 ### Environment Setup
 
-1.  Clone this repository.
+1.  Clone this repostory.
 2.  Install packages:
     ```bash
     npm install
